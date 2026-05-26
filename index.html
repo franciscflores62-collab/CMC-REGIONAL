@@ -1,367 +1,108 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMC - Control Monitoring Center</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
-        
-        :root {
-            --primary-blue: #00b4ff;
-        }
-        
-        body {
-            font-family: 'Orbitron', sans-serif;
-        }
-        
-        .glass {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 180, 255, 0.2);
-        }
-        
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 0 30px rgba(0, 180, 255, 0.5);
-        }
-        
-        .neon-text {
-            text-shadow: 0 0 10px #00b4ff,
-                        0 0 20px #00b4ff;
-        }
-        
-        .monitor-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                             url('https://images.unsplash.com/photo-1558494949-ef0d38d3f9d7?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .icon-matte {
-            filter: brightness(0.95) contrast(1.1);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMC - Control Monitoring Center</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
+    body { font-family: 'Orbitron', sans-serif; }
+    .glass {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 180, 255, 0.3);
+    }
+    .main-card { transition: all 0.3s ease; }
+    .main-card:hover { transform: translateY(-6px); box-shadow: 0 0 25px rgba(0, 180, 255, 0.5); }
+    .neon { text-shadow: 0 0 12px #00b4ff; }
+  </style>
 </head>
-<body class="bg-black text-white monitor-bg min-h-screen overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/90 to-black/90"></div>
-    
+<body class="bg-[#0a0f1c] text-white min-h-screen overflow-hidden"
+      style="background-image: linear-gradient(rgba(10,15,28,0.95), rgba(10,15,28,0.95)), url('https://images.unsplash.com/photo-1558494949-ef0d38d3f9d7?ixlib=rb-4.0.3&auto=format&fit=crop&q=80'); background-size: cover;">
+
+  <div class="max-w-7xl mx-auto pt-8 px-6">
     <!-- Header -->
-    <header class="relative z-50 border-b border-cyan-500/30 bg-black/80 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/50">
-                    <span class="text-3xl font-bold text-white">C</span>
-                </div>
-                <div>
-                    <h1 class="text-4xl font-bold tracking-widest neon-text">CMC</h1>
-                    <p class="text-xs tracking-[3px] text-cyan-400 -mt-1">CONTROL MONITORING CENTER</p>
-                </div>
-            </div>
-            
-            <div class="flex items-center gap-6 text-sm">
-                <button onclick="goHome()" 
-                        class="px-6 py-2.5 rounded-xl border border-cyan-500/30 hover:border-cyan-400 transition-colors flex items-center gap-2">
-                    <i class="fas fa-home"></i>
-                    <span>INICIO</span>
-                </button>
-                <div class="text-xs text-cyan-400/70">
-                    <span id="current-time" class="font-mono"></span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="flex h-[calc(100vh-80px)] relative z-10">
-        <!-- Main Content -->
-        <div class="flex-1 p-8 overflow-auto" id="main-content">
-            
-            <!-- HOME VIEW -->
-            <div id="home-view">
-                <div class="max-w-7xl mx-auto">
-                    <div class="text-center mb-12">
-                        <h2 class="text-5xl font-bold mb-3 tracking-wider neon-text">BIENVENIDO AL CENTRO DE MONITOREO</h2>
-                        <p class="text-cyan-400 text-lg">Selecciona un módulo para continuar</p>
-                    </div>
-                    
-                    <!-- Main Cards -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                        
-                        <!-- Card 1 -->
-                        <div onclick="openModule(1)" 
-                             class="glass rounded-3xl p-8 card-hover cursor-pointer group">
-                            <div class="flex justify-center mb-6">
-                                <div class="w-24 h-24 bg-blue-600/90 rounded-2xl flex items-center justify-center icon-matte shadow-inner">
-                                    <i class="fas fa-id-card text-5xl text-white"></i>
-                                </div>
-                            </div>
-                            <h3 class="text-center text-2xl font-semibold text-cyan-300">CONTROL DE CARNET</h3>
-                            <div class="h-1 w-12 bg-cyan-400 mx-auto mt-6 rounded-full"></div>
-                        </div>
-                        
-                        <!-- Card 2 -->
-                        <div onclick="openModule(2)" 
-                             class="glass rounded-3xl p-8 card-hover cursor-pointer group">
-                            <div class="flex justify-center mb-6">
-                                <div class="w-24 h-24 bg-red-600/90 rounded-2xl flex items-center justify-center icon-matte shadow-inner">
-                                    <i class="fas fa-exclamation-triangle text-5xl text-white"></i>
-                                </div>
-                            </div>
-                            <h3 class="text-center text-2xl font-semibold text-red-300">REPORTES DE INCIDENTES</h3>
-                            <div class="h-1 w-12 bg-red-400 mx-auto mt-6 rounded-full"></div>
-                        </div>
-                        
-                        <!-- Card 3 -->
-                        <div onclick="openModule(3)" 
-                             class="glass rounded-3xl p-8 card-hover cursor-pointer group">
-                            <div class="flex justify-center mb-6">
-                                <div class="w-24 h-24 bg-sky-600/90 rounded-2xl flex items-center justify-center icon-matte shadow-inner">
-                                    <i class="fas fa-truck text-5xl text-white"></i>
-                                </div>
-                            </div>
-                            <h3 class="text-center text-2xl font-semibold text-sky-300">ENTREGA DE VEHÍCULOS</h3>
-                            <div class="h-1 w-12 bg-sky-400 mx-auto mt-6 rounded-full"></div>
-                        </div>
-                        
-                        <!-- Card 4 -->
-                        <div onclick="openModule(4)" 
-                             class="glass rounded-3xl p-8 card-hover cursor-pointer group">
-                            <div class="flex justify-center mb-6">
-                                <div class="w-24 h-24 bg-violet-600/90 rounded-2xl flex items-center justify-center icon-matte shadow-inner">
-                                    <i class="fas fa-video text-5xl text-white"></i>
-                                </div>
-                            </div>
-                            <h3 class="text-center text-2xl font-semibold text-violet-300">REVISIÓN CÁMARAS</h3>
-                            <div class="h-1 w-12 bg-violet-400 mx-auto mt-6 rounded-full"></div>
-                        </div>
-                        
-                        <!-- Card 5 -->
-                        <div onclick="openModule(5)" 
-                             class="glass rounded-3xl p-8 card-hover cursor-pointer group">
-                            <div class="flex justify-center mb-6">
-                                <div class="w-24 h-24 bg-purple-600/90 rounded-2xl flex items-center justify-center icon-matte shadow-inner">
-                                    <i class="fas fa-play-circle text-5xl text-white"></i>
-                                </div>
-                            </div>
-                            <h3 class="text-center text-2xl font-semibold text-purple-300">HISTORIAL VIDEOS</h3>
-                            <div class="h-1 w-12 bg-purple-400 mx-auto mt-6 rounded-full"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SUBMENU VIEWS -->
-            <div id="submenu-view" class="hidden">
-                <div class="max-w-5xl mx-auto">
-                    <div class="flex items-center gap-4 mb-8">
-                        <button onclick="goHome()" 
-                                class="flex items-center gap-2 px-5 py-3 glass rounded-2xl hover:bg-cyan-900/50 transition-colors">
-                            <i class="fas fa-arrow-left"></i>
-                            <span>REGRESAR</span>
-                        </button>
-                        <h2 id="submenu-title" class="text-4xl font-bold"></h2>
-                    </div>
-                    
-                    <div id="submenu-content" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Dynamic content injected by JS -->
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="flex flex-col items-center mb-10">
+      <img src="https://i.imgur.com/0z3vK8P.png" alt="CMC Logo" class="w-20 h-20 mb-3">
+      <h1 class="text-6xl font-bold tracking-widest neon">CMC</h1>
+      <p class="text-cyan-400 tracking-[4px] text-lg -mt-2">CONTROL MONITORING CENTER</p>
     </div>
 
-    <footer class="fixed bottom-0 left-0 right-0 bg-black/90 border-t border-cyan-500/30 py-3 text-center text-xs text-cyan-400/60 z-50">
-        <div class="max-w-7xl mx-auto px-8">
-            BY CMC • SISTEMA DE GESTIÓN INTEGRADA • 2026
+    <!-- Menú Principal -->
+    <div id="main-menu" class="grid grid-cols-1 md:grid-cols-5 gap-6">
+      <div onclick="openModule(1)" role="button" tabindex="0" class="glass main-card rounded-3xl p-6 text-center cursor-pointer">
+        <div class="flex justify-center mb-4">
+          <div class="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center">
+            <i class="fas fa-id-card text-5xl"></i>
+          </div>
         </div>
-    </footer>
+        <h3 class="font-semibold text-lg">CONTROL DE CARNET</h3>
+      </div>
 
-    <script>
-        // Current time
-        function updateTime() {
-            const now = new Date();
-            document.getElementById('current-time').textContent = now.toLocaleTimeString('es-ES', { 
-                hour: '2-digit', 
-                minute: '2-digit',
-                second: '2-digit'
-            });
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
+      <div onclick="openModule(2)" role="button" tabindex="0" class="glass main-card rounded-3xl p-6 text-center cursor-pointer">
+        <div class="flex justify-center mb-4">
+          <div class="w-20 h-20 bg-red-600 rounded-2xl flex items-center justify-center">
+            <i class="fas fa-exclamation-triangle text-5xl"></i>
+          </div>
+        </div>
+        <h3 class="font-semibold text-lg text-red-300">REPORTES DE INCIDENTES</h3>
+      </div>
 
-        // Module data
-        const modules = {
-            1: {
-                title: "CONTROL DE CARNET",
-                color: "cyan",
-                directLink: "https://app.smartsheet.com/b/form/8ef9cf1b2f814ad586f8050d7d440d91",
-                type: "direct"
-            },
-            2: {
-                title: "REPORTES DE INCIDENTES",
-                color: "red",
-                type: "submenu",
-                items: [
-                    { 
-                        name: "INCIDENTES HONDURAS", 
-                        flag: "🇭🇳",
-                        link: "https://app.smartsheet.com/b/form/019cb5514d7275dc801fba7f96ea5f34"
-                    },
-                    { 
-                        name: "INCIDENTES NICARAGUA", 
-                        flag: "🇳🇮",
-                        link: "https://app.smartsheet.com/b/form/41567b8b59e347aabeb0ee8eb515bcb3"
-                    },
-                    { 
-                        name: "INCIDENTES REPÚBLICA DOMINICANA", 
-                        flag: "🇩🇴",
-                        link: "https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d"
-                    },
-                    { 
-                        name: "INCIDENTES EL SALVADOR", 
-                        flag: "🇸🇻",
-                        link: "#",
-                        disabled: true,
-                        note: "SITIO EN CONSTRUCCIÓN"
-                    }
-                ]
-            },
-            3: {
-                title: "ENTREGA DE VEHÍCULOS",
-                color: "sky",
-                type: "submenu",
-                items: [
-                    { 
-                        name: "ENTREGA DE VEHÍCULOS HN", 
-                        flag: "🇭🇳",
-                        icon: "truck",
-                        link: "https://app.smartsheet.com/b/form/bc142c15f6b24dffa4bb4ac77b804b2b"
-                    },
-                    { 
-                        name: "ENTREGA DE VEHÍCULOS DR", 
-                        flag: "DR",
-                        icon: "truck",
-                        link: "https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d"
-                    }
-                ]
-            },
-            4: {
-                title: "REVISIÓN CÁMARAS GLOBAL",
-                color: "violet",
-                type: "submenu",
-                items: [
-                    { 
-                        name: "CÁMARAS HONDURAS", 
-                        flag: "🇭🇳",
-                        icon: "camera",
-                        link: "https://app.smartsheet.com/sheets/M6Pr2fg44xFJcXRC4g2X7WF442V8J3mg5VVjGHF1"
-                    },
-                    { 
-                        name: "CÁMARAS NICARAGUA", 
-                        flag: "🇳🇮",
-                        icon: "camera",
-                        link: "https://app.smartsheet.com/sheets/CpfP6G4qgjFw26pMh6V28Hj9cXqvp8cP7hMW9m51"
-                    },
-                    { 
-                        name: "CÁMARAS EL SALVADOR", 
-                        flag: "🇸🇻",
-                        icon: "camera",
-                        link: "#",
-                        disabled: true,
-                        note: "SITIO EN CONSTRUCCIÓN"
-                    },
-                    { 
-                        name: "CÁMARAS REPÚBLICA DOMINICANA", 
-                        flag: "DR",
-                        icon: "camera",
-                        link: "https://app.smartsheet.com/sheets/cPQvVFR8X8GMhmXwm52J7gXJ8pvr2Cvm72662fv1"
-                    }
-                ]
-            },
-            5: {
-                title: "HISTORIAL DE VIDEOS",
-                color: "purple",
-                type: "submenu",
-                items: [
-                    { 
-                        name: "HISTORIAL HONDURAS", 
-                        flag: "🇭🇳",
-                        icon: "play",
-                        link: "https://app.smartsheet.com/b/form/0f80986e6b5247139b180d0c6a145fbc"
-                    },
-                    { 
-                        name: "HISTORIAL NICARAGUA", 
-                        flag: "🇳🇮",
-                        icon: "play",
-                        link: "https://app.smartsheet.com/b/form/840292ee9a804a3a9254ecccec1caa7d"
-                    }
-                ]
-            }
-        };
+      <div onclick="openModule(3)" role="button" tabindex="0" class="glass main-card rounded-3xl p-6 text-center cursor-pointer">
+        <div class="flex justify-center mb-4">
+          <div class="w-20 h-20 bg-sky-600 rounded-2xl flex items-center justify-center">
+            <i class="fas fa-car text-5xl"></i>
+          </div>
+        </div>
+        <h3 class="font-semibold text-lg">ENTREGA RECIBO VEHÍCULOS</h3>
+      </div>
 
-        function openModule(id) {
-            const module = modules[id];
-            
-            if (module.type === "direct") {
-                window.open(module.directLink, '_blank');
-                return;
-            }
-            
-            // Show submenu
-            document.getElementById('home-view').classList.add('hidden');
-            const submenuView = document.getElementById('submenu-view');
-            submenuView.classList.remove('hidden');
-            
-            document.getElementById('submenu-title').innerHTML = `
-                <span class="text-${module.color}-400">${module.title}</span>
-            `;
-            
-            const contentContainer = document.getElementById('submenu-content');
-            contentContainer.innerHTML = '';
-            
-            module.items.forEach(item => {
-                const cardHTML = `
-                    <div onclick="${item.disabled ? '' : `window.open('${item.link}', '_blank')`}" 
-                         class="glass rounded-3xl p-6 card-hover cursor-pointer ${item.disabled ? 'opacity-60 cursor-not-allowed' : ''}">
-                        <div class="flex items-center gap-6">
-                            <div class="w-16 h-16 bg-gradient-to-br from-${module.color}-500 to-${module.color}-700 rounded-2xl flex items-center justify-center text-4xl flex-shrink-0 icon-matte">
-                                ${item.flag}
-                            </div>
-                            <div class="flex-1">
-                                <h4 class="text-xl font-semibold">${item.name}</h4>
-                                ${item.note ? `<p class="text-amber-400 text-sm mt-1">${item.note}</p>` : ''}
-                            </div>
-                            ${!item.disabled ? `
-                            <div class="text-3xl text-${module.color}-400">
-                                <i class="fas fa-arrow-right"></i>
-                            </div>` : ''}
-                        </div>
-                    </div>
-                `;
-                contentContainer.innerHTML += cardHTML;
-            });
-        }
+      <div onclick="openModule(4)" role="button" tabindex="0" class="glass main-card rounded-3xl p-6 text-center cursor-pointer">
+        <div class="flex justify-center mb-4">
+          <div class="w-20 h-20 bg-violet-600 rounded-2xl flex items-center justify-center">
+            <i class="fas fa-video text-5xl"></i>
+          </div>
+        </div>
+        <h3 class="font-semibold text-lg">REVISIÓN CÁMARAS GLOBAL</h3>
+      </div>
 
-        function goHome() {
-            document.getElementById('home-view').classList.remove('hidden');
-            document.getElementById('submenu-view').classList.add('hidden');
-        }
+      <div onclick="openModule(5)" role="button" tabindex="0" class="glass main-card rounded-3xl p-6 text-center cursor-pointer">
+        <div class="flex justify-center mb-4">
+          <div class="w-20 h-20 bg-purple-600 rounded-2xl flex items-center justify-center">
+            <i class="fas fa-play-circle text-5xl"></i>
+          </div>
+        </div>
+        <h3 class="font-semibold text-lg">HISTORIAL VIDEOS</h3>
+      </div>
+    </div>
 
-        // Keyboard shortcut: ESC to go home
-        document.addEventListener('keydown', function(e) {
-            if (e.key === "Escape") {
-                goHome();
-            }
-        });
+    <!-- Submenú -->
+    <div id="submenu" class="hidden mt-10">
+      <button onclick="goBack()" class="fixed top-6 left-6 flex items-center gap-2 text-cyan-400 hover:text-white text-lg z-50">
+        <i class="fas fa-arrow-left"></i> REGRESAR
+      </button>
+      <h2 id="submenu-title" class="text-4xl font-bold mb-8 text-cyan-300"></h2>
+      <div id="submenu-items" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+    </div>
+  </div>
 
-        // Initialize
-        console.log("%cCMC Dashboard cargado correctamente", "color: #00b4ff; font-size: 14px; font-family: monospace");
-    </script>
-</body>
-</html>
+  <script>
+    const data = {
+      1: { title: "CONTROL DE CARNET", items: [
+        { name: "FORMULARIO CONTROL DE CARNET", link: "https://app.smartsheet.com/b/form/8ef9cf1b2f814ad586f8050d7d440d91" }
+      ]},
+      2: { title: "REPORTES DE INCIDENTES", items: [
+        { name: "INCIDENTES HONDURAS", flag: "🇭🇳", link: "https://app.smartsheet.com/b/form/019cb5514d7275dc801fba7f96ea5f34" },
+        { name: "INCIDENTES NICARAGUA", flag: "🇳🇮", link: "https://app.smartsheet.com/b/form/41567b8b59e347aabeb0ee8eb515bcb3" },
+        { name: "INCIDENTES REPÚBLICA DOMINICANA", flag: "🇩🇴", link: "https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d" },
+        { name: "INCIDENTES EL SALVADOR", flag: "🇸🇻", link: "#", disabled: true, note: "SITIO EN CONSTRUCCIÓN" }
+      ]},
+      3: { title: "ENTREGA RECIBO VEHÍCULOS", items: [
+        { name: "ENTREGA VEHÍCULOS HN", flag: "🇭🇳", link: "https://app.smartsheet.com/b/form/bc142c15f6b24dffa4bb4ac77b804b2b" },
+        { name: "ENTREGA VEHÍCULOS DR", flag: "🇩🇴", link: "https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d" }
+      ]},
+      4: { title: "REVISIÓN CÁMARAS GLOBAL", items: [
+        { name: "CÁMARAS HONDURAS", flag: "🇭🇳", link: "https://app.smartsheet.com/sheets/M6Pr2fg44xFJcXRC4g2X7WF442V8J3mg5VVjGHF1" },
+        { name: "CÁMARAS NICARAGUA", flag: "🇳
