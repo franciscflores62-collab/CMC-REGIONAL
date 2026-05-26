@@ -35,6 +35,19 @@
             font-family: 'Orbitron', monospace;
             letter-spacing: 2px;
         }
+
+        .flag-img {
+            width: 85px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .submenu-card:hover .flag-img {
+            transform: scale(1.08);
+        }
     </style>
 </head>
 <body class="bg-[#0a0f1c] text-white min-h-screen overflow-hidden relative" 
@@ -43,11 +56,9 @@
     <!-- Header -->
     <header class="relative z-50 border-b border-cyan-500/30 bg-black/70 backdrop-blur-md py-4">
         <div class="max-w-7xl mx-auto px-8 flex items-center justify-between">
-            
-            <!-- Logo + Title (Centrado) -->
             <div class="flex-1 flex justify-center">
                 <div class="flex items-center gap-5">
-                    <img src="https://i.imgur.com/0z3vK8P.png" alt="CMC Logo" class="w-16 h-16">
+                    <img src="https://cdn.brandfetch.io/idIlEhjhi3/w/400/h/400/theme/dark/icon.jpeg?c=1dxbfHSJFAPEGdCLU4o5B" alt="CMC Logo" class="w-16 h-16">
                     <div class="text-center">
                         <h1 class="text-5xl font-bold tracking-widest neon">CMC</h1>
                         <p class="text-xs tracking-[4px] text-cyan-400 -mt-1">CONTROL MONITORING CENTER</p>
@@ -55,7 +66,6 @@
                 </div>
             </div>
 
-            <!-- Reloj Digital -->
             <div class="text-right">
                 <div id="digital-clock" class="clock text-2xl font-semibold text-cyan-300"></div>
             </div>
@@ -149,33 +159,33 @@
             2: {
                 title: "REPORTES DE INCIDENTES",
                 items: [
-                    { name: "INCIDENTES HONDURAS", flag: "🇭🇳", link: "https://app.smartsheet.com/b/form/019cb5514d7275dc801fba7f96ea5f34" },
-                    { name: "INCIDENTES NICARAGUA", flag: "🇳🇮", link: "https://app.smartsheet.com/b/form/41567b8b59e347aabeb0ee8eb515bcb3" },
-                    { name: "INCIDENTES REPÚBLICA DOMINICANA", flag: "🇩🇴", link: "https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d" },
-                    { name: "INCIDENTES EL SALVADOR", flag: "🇸🇻", link: "#", disabled: true, note: "SITIO EN CONSTRUCCIÓN" }
+                    { name: "INCIDENTES HONDURAS", code: "hn", link: "https://app.smartsheet.com/b/form/019cb5514d7275dc801fba7f96ea5f34" },
+                    { name: "INCIDENTES NICARAGUA", code: "ni", link: "https://app.smartsheet.com/b/form/41567b8b59e347aabeb0ee8eb515bcb3" },
+                    { name: "INCIDENTES REPÚBLICA DOMINICANA", code: "do", link: "https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d" },
+                    { name: "INCIDENTES EL SALVADOR", code: "sv", link: "#", disabled: true, note: "SITIO EN CONSTRUCCIÓN" }
                 ]
             },
             3: {
                 title: "ENTREGA RECIBO VEHÍCULOS",
                 items: [
-                    { name: "ENTREGA VEHÍCULOS HN", flag: "🇭🇳", link: "https://app.smartsheet.com/b/form/bc142c15f6b24dffa4bb4ac77b804b2b" },
-                    { name: "ENTREGA VEHÍCULOS DR", flag: "🇩🇴", link: "https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d" }
+                    { name: "ENTREGA VEHÍCULOS HN", code: "hn", link: "https://app.smartsheet.com/b/form/bc142c15f6b24dffa4bb4ac77b804b2b" },
+                    { name: "ENTREGA VEHÍCULOS DR", code: "do", link: "https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d" }
                 ]
             },
             4: {
                 title: "REVISIÓN CÁMARAS GLOBAL",
                 items: [
-                    { name: "CÁMARAS HONDURAS", flag: "🇭🇳", link: "https://app.smartsheet.com/sheets/M6Pr2fg44xFJcXRC4g2X7WF442V8J3mg5VVjGHF1" },
-                    { name: "CÁMARAS NICARAGUA", flag: "🇳🇮", link: "https://app.smartsheet.com/sheets/CpfP6G4qgjFw26pMh6V28Hj9cXqvp8cP7hMW9m51" },
-                    { name: "CÁMARAS EL SALVADOR", flag: "🇸🇻", link: "#", disabled: true, note: "SITIO EN CONSTRUCCIÓN" },
-                    { name: "CÁMARAS REPÚBLICA DOMINICANA", flag: "🇩🇴", link: "https://app.smartsheet.com/sheets/cPQvVFR8X8GMhmXwm52J7gXJ8pvr2Cvm72662fv1" }
+                    { name: "CÁMARAS HONDURAS", code: "hn", link: "https://app.smartsheet.com/sheets/M6Pr2fg44xFJcXRC4g2X7WF442V8J3mg5VVjGHF1" },
+                    { name: "CÁMARAS NICARAGUA", code: "ni", link: "https://app.smartsheet.com/sheets/CpfP6G4qgjFw26pMh6V28Hj9cXqvp8cP7hMW9m51" },
+                    { name: "CÁMARAS EL SALVADOR", code: "sv", link: "#", disabled: true, note: "SITIO EN CONSTRUCCIÓN" },
+                    { name: "CÁMARAS REPÚBLICA DOMINICANA", code: "do", link: "https://app.smartsheet.com/sheets/cPQvVFR8X8GMhmXwm52J7gXJ8pvr2Cvm72662fv1" }
                 ]
             },
             5: {
                 title: "HISTORIAL VIDEOS",
                 items: [
-                    { name: "HISTORIAL HONDURAS", flag: "🇭🇳", link: "https://app.smartsheet.com/b/form/0f80986e6b5247139b180d0c6a145fbc" },
-                    { name: "HISTORIAL NICARAGUA", flag: "🇳🇮", link: "https://app.smartsheet.com/b/form/840292ee9a804a3a9254ecccec1caa7d" }
+                    { name: "HISTORIAL HONDURAS", code: "hn", link: "https://app.smartsheet.com/b/form/0f80986e6b5247139b180d0c6a145fbc" },
+                    { name: "HISTORIAL NICARAGUA", code: "ni", link: "https://app.smartsheet.com/b/form/840292ee9a804a3a9254ecccec1caa7d" }
                 ]
             }
         };
@@ -190,17 +200,21 @@
 
             data[id].items.forEach(item => {
                 const div = document.createElement('div');
-                div.className = `glass rounded-3xl p-6 flex items-center gap-6 cursor-pointer hover:border-cyan-400 transition-all ${item.disabled ? 'opacity-60' : ''}`;
+                div.className = `glass rounded-3xl p-6 flex items-center gap-8 cursor-pointer hover:border-cyan-400 transition-all submenu-card ${item.disabled ? 'opacity-60' : ''}`;
+                
                 div.innerHTML = `
-                    <div class="text-6xl">${item.flag || '📋'}</div>
+                    <img src="https://flagcdn.com/w320/${item.code}.png" 
+                         alt="${item.name}" 
+                         class="flag-img">
                     <div class="flex-1">
                         <p class="text-xl font-medium">${item.name}</p>
                         ${item.note ? `<p class="text-amber-400 text-sm mt-1">${item.note}</p>` : ''}
                     </div>
-                    ${!item.disabled ? `<i class="fas fa-arrow-right text-3xl text-cyan-400"></i>` : ''}
+                    ${!item.disabled ? `<i class="fas fa-arrow-right text-4xl text-cyan-400"></i>` : ''}
                 `;
+                
                 if (!item.disabled) {
-                    div.onclick = () => window.location.href = item.link;  // ← Abre en la misma pestaña
+                    div.onclick = () => window.open(item.link, '_blank'); // Abre en nueva pestaña
                 }
                 container.appendChild(div);
             });
