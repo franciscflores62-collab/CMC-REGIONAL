@@ -1,3 +1,6 @@
+# HTML ACTUALIZADO - CMC CONTROL MONITORING CENTER
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,10 +9,7 @@
 
 <title>CMC - CONTROL MONITORING CENTER</title>
 
-<!-- FUENTES -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-<!-- ICONOS -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
 <style>
@@ -26,53 +26,59 @@ html{
 
 body{
     font-family:'Roboto',sans-serif;
-    background:#020617;
+
+    background:
+    linear-gradient(rgba(3,7,18,0.78),rgba(3,7,18,0.88)),
+    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1920&auto=format&fit=crop');
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
     color:white;
+
     overflow-x:hidden;
+
     min-height:100vh;
+
     position:relative;
 }
 
-/* ================================================= */
-/* FONDO FUTURISTA */
-/* ================================================= */
-
 body::before{
     content:'';
+
     position:fixed;
     inset:0;
 
     background:
-    radial-gradient(circle at top left,#2563eb55,transparent 25%),
-    radial-gradient(circle at bottom right,#1d4ed855,transparent 25%),
-    linear-gradient(135deg,#020617,#071226,#020617);
+    linear-gradient(
+    135deg,
+    rgba(59,130,246,0.08),
+    rgba(14,165,233,0.05),
+    rgba(2,6,23,0.85)
+    );
 
     z-index:-3;
 }
 
 body::after{
     content:'';
+
     position:fixed;
     inset:0;
 
     background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
 
-    background-size:40px 40px;
+    background-size:50px 50px;
 
     z-index:-2;
 }
 
-/* ================================================= */
-/* HEADER */
-/* ================================================= */
-
 .header{
-
     padding-top:30px;
     padding-bottom:20px;
-
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -80,95 +86,38 @@ body::after{
 }
 
 .logo{
-
     width:110px;
     margin-bottom:10px;
-
-    filter:
-    drop-shadow(0 0 12px #2563eb)
-    drop-shadow(0 0 25px #1d4ed8);
-
-    animation:pulse 3s infinite;
-}
-
-@keyframes pulse{
-
-    0%{
-        transform:scale(1);
-    }
-
-    50%{
-        transform:scale(1.04);
-    }
-
-    100%{
-        transform:scale(1);
-    }
+    filter:drop-shadow(0 0 10px rgba(59,130,246,0.35));
 }
 
 .title{
-
     font-family:'Orbitron',sans-serif;
     font-size:4rem;
     font-weight:800;
-
     letter-spacing:4px;
-
-    text-shadow:
-    0 0 20px #2563eb,
-    0 0 40px #2563eb;
+    text-shadow:0 0 12px rgba(59,130,246,0.35);
 }
 
 .subtitle{
-
     margin-top:10px;
-
     font-family:'Orbitron',sans-serif;
-
     color:#cbd5e1;
-
     font-size:1rem;
-
     letter-spacing:3px;
 }
 
-/* ================================================= */
-/* LINEA DECORATIVA */
-/* ================================================= */
-
 .glow-line{
-
     width:80%;
-    height:3px;
-
+    height:2px;
     margin:25px auto 10px;
-
-    background:linear-gradient(
-    to right,
-    transparent,
-    #3b82f6,
-    white,
-    #3b82f6,
-    transparent
-    );
-
+    background:linear-gradient(to right,transparent,#60a5fa,#ffffff,#60a5fa,transparent);
     border-radius:50px;
-
-    box-shadow:
-    0 0 15px #2563eb,
-    0 0 30px #2563eb;
 }
 
-/* ================================================= */
-/* PANTALLAS */
-/* ================================================= */
-
 .screen{
-
     display:none;
-
     padding:20px;
-
     animation:fade 0.4s ease;
 }
 
@@ -177,7 +126,6 @@ body::after{
 }
 
 @keyframes fade{
-
     from{
         opacity:0;
         transform:translateY(15px);
@@ -189,29 +137,14 @@ body::after{
     }
 }
 
-/* ================================================= */
-/* GRID */
-/* ================================================= */
-
 .grid{
-
     max-width:1500px;
-
     margin:auto;
-
     display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(260px,1fr));
-
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:28px;
-
     margin-top:30px;
 }
-
-/* ================================================= */
-/* CARDS */
-/* ================================================= */
 
 .card{
 
@@ -223,16 +156,7 @@ body::after{
 
     min-height:240px;
 
-    background:
-    linear-gradient(
-    145deg,
-    rgba(10,20,40,0.85),
-    rgba(3,7,18,0.95)
-    );
-
-    border:1px solid rgba(69,140,256,0.45);
-
-    backdrop-filter:blur(15px);
+    backdrop-filter:blur(12px);
 
     transition:0.35s;
 
@@ -248,45 +172,45 @@ body::after{
 
     padding:30px;
 
+    border:1px solid rgba(255,255,255,0.08);
+
     box-shadow:
-    inset 0 0 30px rgba(59,130,246,0.08),
-    0 0 20px rgba(0,0,0,0.5);
+    0 8px 30px rgba(0,0,0,0.35);
+}
+
+.grid .card:nth-child(1){
+    background:#355c8aee;
+}
+
+.grid .card:nth-child(2){
+    background:#2b6777ee;
+}
+
+.grid .card:nth-child(3){
+    background:#4b5563ee;
+}
+
+.grid .card:nth-child(4){
+    background:#52525bee;
+}
+
+.grid .card:nth-child(5){
+    background:#475569ee;
 }
 
 .card:hover{
 
-    transform:translateY(-10px) scale(1.03);
+    transform:translateY(-8px);
 
-    border-color:#60a5fa;
+    border-color:rgba(255,255,255,0.18);
 
     box-shadow:
-    0 0 25px rgba(37,99,235,0.7),
-    0 0 60px rgba(37,99,235,0.3);
+    0 12px 35px rgba(0,0,0,0.45);
 }
-
-/* BRILLO */
 
 .card::before{
-
-    content:'';
-
-    position:absolute;
-
-    width:250px;
-    height:250px;
-
-    background:
-    radial-gradient(
-    circle,
-    rgba(59,130,246,0.18),
-    transparent 70%
-    );
-
-    top:-120px;
-    right:-120px;
+    display:none;
 }
-
-/* LINEA INFERIOR */
 
 .card::after{
 
@@ -296,44 +220,32 @@ body::after{
 
     bottom:18px;
 
-    width:70px;
+    width:60px;
     height:3px;
 
     border-radius:50px;
 
-    background:#3b82f6;
-
-    box-shadow:
-    0 0 12px #3b82f6,
-    0 0 25px #3b82f6;
+    background:rgba(255,255,255,0.25);
 }
-
-/* ================================================= */
-/* ICONOS */
-/* ================================================= */
 
 .material-icons-round{
 
-    font-size:85px;
+    font-size:82px;
 
-    margin-bottom:20px;
+    margin-bottom:18px;
 
-    color:#60a5fa;
+    color:#dbeafe;
 
-    text-shadow:
-    0 0 20px #2563eb,
-    0 0 40px #2563eb;
+    opacity:0.92;
+
+    text-shadow:none;
 }
-
-/* ================================================= */
-/* TITULOS */
-/* ================================================= */
 
 .card h2{
 
     text-align:center;
 
-    font-size:1.25rem;
+    font-size:1.15rem;
 
     line-height:1.5;
 
@@ -355,14 +267,12 @@ body::after{
     font-size:2rem;
 
     color:white;
-
-    text-shadow:
-    0 0 15px #2563eb;
 }
 
-/* ================================================= */
-/* BOTON REGRESAR */
-/* ================================================= */
+.flag{
+    font-size:42px;
+    margin-top:10px;
+}
 
 .btn-back{
 
@@ -374,7 +284,7 @@ body::after{
 
     background:rgba(15,23,42,0.9);
 
-    border:1px solid rgba(69,140,256,0.8);
+    border:1px solid rgba(255,255,255,0.1);
 
     color:white;
 
@@ -389,10 +299,7 @@ body::after{
 
 .btn-back:hover{
 
-    background:#2563eb;
-
-    box-shadow:
-    0 0 15px #2563eb;
+    background:#334155;
 }
 
 .btn-back .material-icons-round{
@@ -402,18 +309,10 @@ body::after{
     margin:0;
 }
 
-/* ================================================= */
-/* LINKS */
-/* ================================================= */
-
 .link-btn{
     text-decoration:none;
     color:white;
 }
-
-/* ================================================= */
-/* MODAL */
-/* ================================================= */
 
 .modal{
 
@@ -436,18 +335,15 @@ body::after{
     width:90%;
     max-width:450px;
 
-    background:#071226;
+    background:#0f172a;
 
-    border:1px solid #2563eb;
+    border:1px solid rgba(255,255,255,0.1);
 
     border-radius:24px;
 
     padding:40px;
 
     text-align:center;
-
-    box-shadow:
-    0 0 35px rgba(37,99,235,0.5);
 }
 
 .modal-content .material-icons-round{
@@ -478,7 +374,7 @@ body::after{
 
     border:none;
 
-    background:#2563eb;
+    background:#334155;
 
     color:white;
 
@@ -488,10 +384,6 @@ body::after{
 
     cursor:pointer;
 }
-
-/* ================================================= */
-/* FOOTER */
-/* ================================================= */
 
 .footer{
 
@@ -510,45 +402,11 @@ body::after{
     font-size:1.2rem;
 
     color:white;
-
-    position:relative;
 }
 
 .footer span{
-
-    color:#3b82f6;
-
-    text-shadow:
-    0 0 15px #2563eb;
+    color:#93c5fd;
 }
-
-.footer::before{
-
-    content:'';
-
-    position:absolute;
-
-    top:0;
-    left:10%;
-
-    width:80%;
-    height:2px;
-
-    background:
-    linear-gradient(
-    to right,
-    transparent,
-    #2563eb,
-    transparent
-    );
-
-    box-shadow:
-    0 0 10px #2563eb;
-}
-
-/* ================================================= */
-/* RESPONSIVE */
-/* ================================================= */
 
 @media(max-width:768px){
 
@@ -580,10 +438,6 @@ body::after{
 
 <body>
 
-<!-- ================================================= -->
-<!-- HEADER -->
-<!-- ================================================= -->
-
 <div class="header">
 
 <img src="cmc.png" class="logo">
@@ -599,10 +453,6 @@ CONTROL MONITORING CENTER
 </div>
 
 <div class="glow-line"></div>
-
-<!-- ================================================= -->
-<!-- MENU PRINCIPAL -->
-<!-- ================================================= -->
 
 <section id="mainMenu" class="screen active">
 
@@ -634,7 +484,7 @@ report_problem
 onclick="showScreen('vehiculosMenu')">
 
 <span class="material-icons-round">
-directions_car
+airport_shuttle
 </span>
 
 <h2>ENTREGA RECIBO VEHÍCULOS</h2>
@@ -645,7 +495,7 @@ directions_car
 onclick="showScreen('camarasMenu')">
 
 <span class="material-icons-round">
-videocam
+camera_indoor
 </span>
 
 <h2>REVISIÓN CÁMARAS GLOBAL</h2>
@@ -656,7 +506,7 @@ videocam
 onclick="showScreen('historialMenu')">
 
 <span class="material-icons-round">
-video_library
+smart_display
 </span>
 
 <h2>HISTORIAL VIDEOS</h2>
@@ -666,10 +516,6 @@ video_library
 </div>
 
 </section>
-
-<!-- ================================================= -->
-<!-- INCIDENTES -->
-<!-- ================================================= -->
 
 <section id="incidentesMenu" class="screen">
 
@@ -690,276 +536,142 @@ REPORTES DE INCIDENTES
 
 <div class="grid">
 
-<a class="link-btn"
-target="_blank"
-href="https://app.smartsheet.com/b/form/019cb5514d7275dc801fba7f96ea5f34">
-
+<a class="link-btn" target="_blank" href="https://app.smartsheet.com/b/form/019cb5514d7275dc801fba7f96ea5f34">
 <div class="card">
-
-<span class="material-icons-round">
-flag
-</span>
-
+<span class="material-icons-round">flag</span>
 <h2>INCIDENTES HONDURAS</h2>
-
+<div class="flag">🇭🇳</div>
 </div>
-
 </a>
 
-<a class="link-btn"
-target="_blank"
-href="https://app.smartsheet.com/b/form/41567b8b59e347aabeb0ee8eb515bcb3">
-
+<a class="link-btn" target="_blank" href="https://app.smartsheet.com/b/form/41567b8b59e347aabeb0ee8eb515bcb3">
 <div class="card">
-
-<span class="material-icons-round">
-flag
-</span>
-
+<span class="material-icons-round">flag</span>
 <h2>INCIDENTES NICARAGUA</h2>
-
+<div class="flag">🇳🇮</div>
 </div>
-
 </a>
 
-<a class="link-btn"
-target="_blank"
-href="https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d">
-
+<a class="link-btn" target="_blank" href="https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d">
 <div class="card">
-
-<span class="material-icons-round">
-flag
-</span>
-
+<span class="material-icons-round">flag</span>
 <h2>INCIDENTES REPÚBLICA DOMINICANA</h2>
-
+<div class="flag">🇩🇴</div>
 </div>
-
 </a>
 
-<div class="card"
-onclick="showConstruction()">
-
-<span class="material-icons-round">
-construction
-</span>
-
+<div class="card" onclick="showConstruction()">
+<span class="material-icons-round">construction</span>
 <h2>INCIDENTES EL SALVADOR</h2>
-
+<div class="flag">🇸🇻</div>
 </div>
 
 </div>
-
 </section>
-
-<!-- ================================================= -->
-<!-- VEHICULOS -->
-<!-- ================================================= -->
 
 <section id="vehiculosMenu" class="screen">
 
-<button class="btn-back"
-onclick="showScreen('mainMenu')">
-
-<span class="material-icons-round">
-arrow_back
-</span>
-
+<button class="btn-back" onclick="showScreen('mainMenu')">
+<span class="material-icons-round">arrow_back</span>
 Regresar
-
 </button>
 
-<h1 class="section-title">
-ENTREGA DE VEHÍCULOS
-</h1>
+<h1 class="section-title">ENTREGA DE VEHÍCULOS</h1>
 
 <div class="grid">
 
-<a class="link-btn"
-target="_blank"
-href="https://app.smartsheet.com/b/form/bc142c15f6b24dffa4bb4ac77b804b2b">
-
+<a class="link-btn" target="_blank" href="https://app.smartsheet.com/b/form/bc142c15f6b24dffa4bb4ac77b804b2b">
 <div class="card">
-
-<span class="material-icons-round">
-directions_car
-</span>
-
+<span class="material-icons-round">airport_shuttle</span>
 <h2>ENTREGA VEHÍCULOS HN</h2>
-
+<div class="flag">🇭🇳</div>
 </div>
-
 </a>
 
-<a class="link-btn"
-target="_blank"
-href="https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d">
-
+<a class="link-btn" target="_blank" href="https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d">
 <div class="card">
-
-<span class="material-icons-round">
-local_shipping
-</span>
-
+<span class="material-icons-round">airport_shuttle</span>
 <h2>ENTREGA VEHÍCULOS DR</h2>
-
+<div class="flag">🇩🇴</div>
 </div>
-
 </a>
 
 </div>
-
 </section>
-
-<!-- ================================================= -->
-<!-- CAMARAS -->
-<!-- ================================================= -->
 
 <section id="camarasMenu" class="screen">
 
-<button class="btn-back"
-onclick="showScreen('mainMenu')">
-
-<span class="material-icons-round">
-arrow_back
-</span>
-
+<button class="btn-back" onclick="showScreen('mainMenu')">
+<span class="material-icons-round">arrow_back</span>
 Regresar
-
 </button>
 
-<h1 class="section-title">
-REVISIÓN CÁMARAS
-</h1>
+<h1 class="section-title">REVISIÓN CÁMARAS</h1>
 
 <div class="grid">
 
-<a class="link-btn"
-target="_blank"
-href="https://app.smartsheet.com/sheets/M6Pr2fg44xFJcXRC4g2X7WF442V8J3mg5VVjGHF1">
-
+<a class="link-btn" target="_blank" href="https://app.smartsheet.com/sheets/M6Pr2fg44xFJcXRC4g2X7WF442V8J3mg5VVjGHF1">
 <div class="card">
-
-<span class="material-icons-round">
-videocam
-</span>
-
+<span class="material-icons-round">camera_indoor</span>
 <h2>CAMARAS HONDURAS</h2>
-
+<div class="flag">🇭🇳</div>
 </div>
-
 </a>
 
-<a class="link-btn"
-target="_blank"
-href="https://app.smartsheet.com/sheets/CpfP6G4qgjFw26pMh6V28Hj9cXqvp8cP7hMW9m51">
-
+<a class="link-btn" target="_blank" href="https://app.smartsheet.com/sheets/CpfP6G4qgjFw26pMh6V28Hj9cXqvp8cP7hMW9m51">
 <div class="card">
-
-<span class="material-icons-round">
-videocam
-</span>
-
+<span class="material-icons-round">camera_indoor</span>
 <h2>CAMARAS NICARAGUA</h2>
-
+<div class="flag">🇳🇮</div>
 </div>
-
 </a>
 
-<div class="card"
-onclick="showConstruction()">
-
-<span class="material-icons-round">
-construction
-</span>
-
+<div class="card" onclick="showConstruction()">
+<span class="material-icons-round">construction</span>
 <h2>CAMARAS EL SALVADOR</h2>
-
+<div class="flag">🇸🇻</div>
 </div>
 
-<a class="link-btn"
-target="_blank"
-href="https://app.Smartsheet.com/sheets/cPQvVFR8X8GMhmXwm52J7gXJ8pvr2Cvm72662fv1">
-
+<a class="link-btn" target="_blank" href="https://app.Smartsheet.com/sheets/cPQvVFR8X8GMhmXwm52J7gXJ8pvr2Cvm72662fv1">
 <div class="card">
-
-<span class="material-icons-round">
-videocam
-</span>
-
+<span class="material-icons-round">camera_indoor</span>
 <h2>CAMARAS REPÚBLICA DOMINICANA</h2>
-
+<div class="flag">🇩🇴</div>
 </div>
-
 </a>
 
 </div>
-
 </section>
-
-<!-- ================================================= -->
-<!-- HISTORIAL -->
-<!-- ================================================= -->
 
 <section id="historialMenu" class="screen">
 
-<button class="btn-back"
-onclick="showScreen('mainMenu')">
-
-<span class="material-icons-round">
-arrow_back
-</span>
-
+<button class="btn-back" onclick="showScreen('mainMenu')">
+<span class="material-icons-round">arrow_back</span>
 Regresar
-
 </button>
 
-<h1 class="section-title">
-HISTORIAL DE VIDEOS
-</h1>
+<h1 class="section-title">HISTORIAL DE VIDEOS</h1>
 
 <div class="grid">
 
-<a class="link-btn"
-target="_blank"
-href="https://app.smartsheet.com/b/form/0f80986e6b5247139b180d0c6a145fbc">
-
+<a class="link-btn" target="_blank" href="https://app.smartsheet.com/b/form/0f80986e6b5247139b180d0c6a145fbc">
 <div class="card">
-
-<span class="material-icons-round">
-history
-</span>
-
+<span class="material-icons-round">smart_display</span>
 <h2>HISTORIAL HONDURAS</h2>
-
+<div class="flag">🇭🇳</div>
 </div>
-
 </a>
 
-<a class="link-btn"
-target="_blank"
-href="https://app.smartsheet.com/b/form/840292ee9a804a3a9254ecccec1caa7d">
-
+<a class="link-btn" target="_blank" href="https://app.smartsheet.com/b/form/840292ee9a804a3a9254ecccec1caa7d">
 <div class="card">
-
-<span class="material-icons-round">
-history
-</span>
-
+<span class="material-icons-round">smart_display</span>
 <h2>HISTORIAL NICARAGUA</h2>
-
+<div class="flag">🇳🇮</div>
 </div>
-
 </a>
 
 </div>
-
 </section>
-
-<!-- ================================================= -->
-<!-- MODAL -->
-<!-- ================================================= -->
 
 <div class="modal" id="constructionModal">
 
@@ -969,39 +681,24 @@ history
 construction
 </span>
 
-<h2>
-SITIO EN CONSTRUCCIÓN
-</h2>
+<h2>SITIO EN CONSTRUCCIÓN</h2>
 
 <p>
 Esta sección aún no se encuentra disponible.
 Próximamente estará habilitada.
 </p>
 
-<button class="close-modal"
-onclick="closeConstruction()">
-
+<button class="close-modal" onclick="closeConstruction()">
 Cerrar
-
 </button>
 
 </div>
 
 </div>
 
-<!-- ================================================= -->
-<!-- FOOTER -->
-<!-- ================================================= -->
-
 <div class="footer">
-
 BY <span>CMC</span>
-
 </div>
-
-<!-- ================================================= -->
-<!-- JAVASCRIPT -->
-<!-- ================================================= -->
 
 <script>
 
@@ -1010,35 +707,28 @@ function showScreen(screenId){
     const screens=document.querySelectorAll('.screen');
 
     screens.forEach(screen=>{
-
         screen.classList.remove('active');
-
     });
 
     document.getElementById(screenId)
     .classList.add('active');
 
     window.scrollTo({
-
         top:0,
         behavior:'smooth'
-
     });
 }
 
 function openDirectLink(url){
-
     window.open(url,'_blank');
 }
 
 function showConstruction(){
-
     document.getElementById('constructionModal')
     .style.display='flex';
 }
 
 function closeConstruction(){
-
     document.getElementById('constructionModal')
     .style.display='none';
 }
@@ -1047,3 +737,4 @@ function closeConstruction(){
 
 </body>
 </html>
+```
