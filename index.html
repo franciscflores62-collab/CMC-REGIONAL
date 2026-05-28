@@ -1,220 +1,381 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMC - Crisis Management Center</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
-       
-        body {
-            font-family: 'Orbitron', sans-serif;
-        }
-       
-        .glass {
-            background: rgba(15, 23, 42, 0.88);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 180, 255, 0.3);
-        }
-       
-        .main-card {
-            transition: all 0.3s ease;
-        }
-        .main-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 0 40px rgba(0, 180, 255, 0.6);
-        }
-       
-        .neon {
-            text-shadow: 0 0 15px #00b4ff;
-        }
-       
-        .clock {
-            font-family: 'Orbitron', monospace;
-            letter-spacing: 2px;
-        }
-        .flag-img {
-            width: 85px;
-            height: 55px;
-            object-fit: cover;
-            border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
-        }
-        .submenu-card:hover .flag-img {
-            transform: scale(1.08);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMC - Crisis Management Center</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+  />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg-dark: #0a0f1c;
+      --glass-bg: rgba(15, 23, 42, 0.82);
+      --glass-border: rgba(0, 180, 255, 0.28);
+      --cyan-main: #00b4ff;
+      --cyan-soft: #7dd3fc;
+      --shadow-neon: 0 0 30px rgba(0, 180, 255, 0.35);
+      --shadow-neon-strong: 0 0 40px rgba(0, 180, 255, 0.55);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: var(--bg-dark);
+      color: white;
+      min-height: 100vh;
+      background-image:
+        linear-gradient(rgba(10, 15, 28, 0.55), rgba(10, 15, 28, 0.72)),
+        url('https://gildan.sharepoint.com/:i:/r/sites/CMCRegionalSecurity/Shared%20Documents/Francisco%20Flores/background.jpg?csf=1&web=1&e=nOeid1');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-neon);
+    }
+
+    .interactive-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .interactive-card:hover,
+    .interactive-card:focus-visible {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-neon-strong);
+      border-color: rgba(34, 211, 238, 0.7);
+      outline: none;
+    }
+
+    .neon {
+      text-shadow: 0 0 12px var(--cyan-main);
+    }
+
+    .clock {
+      font-family: 'Orbitron', monospace;
+      letter-spacing: 2px;
+    }
+
+    .flag-img {
+      width: 84px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .submenu-card:hover .flag-img,
+    .submenu-card:focus-visible .flag-img {
+      transform: scale(1.06);
+    }
+
+    .disabled-card {
+      opacity: 0.55;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .disabled-card:hover,
+    .disabled-card:focus-visible {
+      transform: none;
+      box-shadow: none;
+      border-color: var(--glass-border);
+    }
+
+    .focus-ring:focus-visible {
+      outline: 2px solid #22d3ee;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 768px) {
+      .clock {
+        font-size: 1rem;
+        letter-spacing: 1px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
-<body class="bg-[#0a0f1c] text-white min-h-screen overflow-hidden relative"
-      style="background-image: linear-gradient(rgba(10,15,28,0.25), rgba(10,15,28,0.48)), url('https://gildan.sharepoint.com/:i:/r/sites/CMCRegionalSecurity/Shared%20Documents/Francisco%20Flores/background.jpg?csf=1&web=1&e=nOeid1'); background-size: cover; background-position: center; background-attachment: fixed;">
-    
-    <!-- Header -->
-    <header class="relative z-50 border-b border-cyan-500/30 bg-black/70 backdrop-blur-md py-4">
-        <div class="max-w-7xl mx-auto px-8 flex items-center justify-between">
-            <div class="flex-1 flex justify-center">
-                <div class="flex items-center gap-5">
-                    <img src="https://gildan.sharepoint.com/:i:/r/sites/CMCRegionalSecurity/Shared%20Documents/Francisco%20Flores/Logo%20Gildan.png?csf=1&web=1&e=Ai0gGa" alt="CMC Logo" class="w-16 h-16">
-                    <div class="text-center">
-                        <h1 class="text-5xl font-bold tracking-widest neon">CMC</h1>
-                        <p class="text-xs tracking-[4px] text-cyan-400 -mt-1">CRISIS MANAGEMENT CENTER</p>
-                    </div>
-                </div>
-            </div>
-            <div class="text-right">
-                <div id="digital-clock" class="clock text-2xl font-semibold text-cyan-300"></div>
-            </div>
-        </div>
-    </header>
 
-    <div class="max-w-7xl mx-auto pt-28 px-6">
-        <!-- Main Menu -->
-        <div id="main-menu" class="grid grid-cols-1 md:grid-cols-5 gap-6">
-            <div onclick="openModule(1)" class="glass main-card rounded-3xl p-6 text-center cursor-pointer">
-                <div class="flex justify-center mb-4">
-                    <div class="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center">
-                        <i class="fas fa-id-card text-5xl"></i>
-                    </div>
-                </div>
-                <h3 class="font-semibold text-lg">CONTROL DE CARNET</h3>
-            </div>
-            <div onclick="openModule(2)" class="glass main-card rounded-3xl p-6 text-center cursor-pointer border border-red-500/30">
-                <div class="flex justify-center mb-4">
-                    <div class="w-20 h-20 bg-red-600 rounded-2xl flex items-center justify-center">
-                        <i class="fas fa-exclamation-triangle text-5xl"></i>
-                    </div>
-                </div>
-                <h3 class="font-semibold text-lg text-red-300">REPORTES DE INCIDENTES</h3>
-            </div>
-            <div onclick="openModule(3)" class="glass main-card rounded-3xl p-6 text-center cursor-pointer">
-                <div class="flex justify-center mb-4">
-                    <div class="w-20 h-20 bg-sky-600 rounded-2xl flex items-center justify-center">
-                        <i class="fas fa-car text-5xl"></i>
-                    </div>
-                </div>
-                <h3 class="font-semibold text-lg">ENTREGA RECIBO VEHÍCULOS</h3>
-            </div>
-            <div onclick="openModule(4)" class="glass main-card rounded-3xl p-6 text-center cursor-pointer">
-                <div class="flex justify-center mb-4">
-                    <div class="w-20 h-20 bg-violet-600 rounded-2xl flex items-center justify-center">
-                        <i class="fas fa-video text-5xl"></i>
-                    </div>
-                </div>
-                <h3 class="font-semibold text-lg">REVISIÓN CÁMARAS GLOBAL</h3>
-            </div>
-            <div onclick="openModule(5)" class="glass main-card rounded-3xl p-6 text-center cursor-pointer">
-                <div class="flex justify-center mb-4">
-                    <div class="w-20 h-20 bg-purple-600 rounded-2xl flex items-center justify-center">
-                        <i class="fas fa-play-circle text-5xl"></i>
-                    </div>
-                </div>
-                <h3 class="font-semibold text-lg">HISTORIAL VIDEOS</h3>
-            </div>
+<body>
+  <header class="sticky top-0 z-50 border-b border-cyan-500/30 bg-black/70 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <img
+          src="https://gildan.sharepoint.com/:i:/r/sites/CMCRegionalSecurity/Shared%20Documents/Francisco%20Flores/Logo%20Gildan.png?csf=1&web=1&e=Ai0gGa"
+          alt="Logo de CMC"
+          class="w-14 h-14 md:w-16 md:h-16 object-contain"
+        />
+        <div class="text-center md:text-left">
+          <h1 class="text-3xl md:text-5xl font-bold tracking-[0.2em] neon">CMC</h1>
+          <p class="text-[10px] md:text-xs tracking-[0.35em] text-cyan-400">
+            CRISIS MANAGEMENT CENTER
+          </p>
         </div>
+      </div>
 
-        <!-- Submenu -->
-        <div id="submenu" class="hidden mt-10">
-            <button onclick="goBack()"
-                    class="flex items-center gap-2 text-cyan-400 hover:text-white mb-6 text-lg">
-                <i class="fas fa-arrow-left"></i> REGRESAR
-            </button>
-           
-            <h2 id="submenu-title" class="text-4xl font-bold mb-8 text-cyan-300"></h2>
-           
-            <div id="submenu-items" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- JS injected -->
-            </div>
-        </div>
+      <div
+        id="digital-clock"
+        class="clock text-lg md:text-2xl font-semibold text-cyan-300"
+        aria-live="polite"
+        aria-label="Hora actual"
+      ></div>
     </div>
+  </header>
 
-    <footer class="fixed bottom-4 left-0 right-0 text-center text-xs text-cyan-400/60">
-        BY CMC • SISTEMA DE GESTIÓN INTEGRADA
-    </footer>
+  <main class="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12">
+    <section id="main-menu-section" aria-labelledby="main-menu-title">
+      <h2 id="main-menu-title" class="sr-only">Menú principal</h2>
 
-    <script>
-        // Reloj Digital
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('es-ES', {
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            document.getElementById('digital-clock').textContent = timeString;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
+      <nav id="main-menu" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-6">
+        <!-- Render dinámico -->
+      </nav>
+    </section>
 
-        const data = {
-            1: { title: "CONTROL DE CARNET", items: [{ name: "FORMULARIO CONTROL DE CARNET", link: "https://app.smartsheet.com/b/form/8ef9cf1b2f814ad586f8050d7d440d91" }] },
-            2: {
-                title: "REPORTES DE INCIDENTES",
-                items: [
-                    { name: "INCIDENTES HONDURAS", code: "hn", link: "https://app.smartsheet.com/b/form/019cb5514d7275dc801fba7f96ea5f34" },
-                    { name: "INCIDENTES NICARAGUA", code: "ni", link: "https://app.smartsheet.com/b/form/41567b8b59e347aabeb0ee8eb515bcb3" },
-                    { name: "INCIDENTES REPÚBLICA DOMINICANA", code: "do", link: "https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d" },
-                    { name: "INCIDENTES EL SALVADOR", code: "sv", link: "#", disabled: true, note: "SITIO EN CONSTRUCCIÓN" }
-                ]
-            },
-            3: {
-                title: "ENTREGA RECIBO VEHÍCULOS",
-                items: [
-                    { name: "ENTREGA VEHÍCULOS HN", code: "hn", link: "https://app.smartsheet.com/b/form/bc142c15f6b24dffa4bb4ac77b804b2b" },
-                    { name: "ENTREGA VEHÍCULOS DR", code: "do", link: "https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d" }
-                ]
-            },
-            4: {
-                title: "REVISIÓN CÁMARAS GLOBAL",
-                items: [
-                    { name: "CÁMARAS HONDURAS", code: "hn", link: "https://app.smartsheet.com/sheets/M6Pr2fg44xFJcXRC4g2X7WF442V8J3mg5VVjGHF1" },
-                    { name: "CÁMARAS NICARAGUA", code: "ni", link: "https://app.smartsheet.com/sheets/CpfP6G4qgjFw26pMh6V28Hj9cXqvp8cP7hMW9m51" },
-                    { name: "CÁMARAS EL SALVADOR", code: "sv", link: "#", disabled: true, note: "SITIO EN CONSTRUCCIÓN" },
-                    { name: "CÁMARAS REPÚBLICA DOMINICANA", code: "do", link: "https://app.smartsheet.com/sheets/cPQvVFR8X8GMhmXwm52J7gXJ8pvr2Cvm72662fv1" }
-                ]
-            },
-            5: {
-                title: "HISTORIAL VIDEOS",
-                items: [
-                    { name: "HISTORIAL HONDURAS", code: "hn", link: "https://app.smartsheet.com/b/form/0f80986e6b5247139b180d0c6a145fbc" },
-                    { name: "HISTORIAL NICARAGUA", code: "ni", link: "https://app.smartsheet.com/b/form/840292ee9a804a3a9254ecccec1caa7d" }
-                ]
-            }
-        };
+    <section id="submenu" class="hidden mt-10" aria-labelledby="submenu-title">
+      <button
+        id="back-button"
+        type="button"
+        class="focus-ring inline-flex items-center gap-2 text-cyan-400 hover:text-white mb-6 text-lg transition-colors"
+      >
+        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+        <span>REGRESAR</span>
+      </button>
 
-        function openModule(id) {
-            document.getElementById('main-menu').classList.add('hidden');
-            document.getElementById('submenu').classList.remove('hidden');
-            document.getElementById('submenu-title').textContent = data[id].title;
-            const container = document.getElementById('submenu-items');
-            container.innerHTML = '';
-            data[id].items.forEach(item => {
-                const div = document.createElement('div');
-                div.className = `glass rounded-3xl p-6 flex items-center gap-8 cursor-pointer hover:border-cyan-400 transition-all submenu-card ${item.disabled ? 'opacity-60' : ''}`;
-               
-                div.innerHTML = `
-                    <img src="https://flagcdn.com/w320/${item.code}.png"
-                         alt="${item.name}"
-                         class="flag-img">
-                    <div class="flex-1">
-                        <p class="text-xl font-medium">${item.name}</p>
-                        ${item.note ? `<p class="text-amber-400 text-sm mt-1">${item.note}</p>` : ''}
-                    </div>
-                    ${!item.disabled ? `<i class="fas fa-arrow-right text-4xl text-cyan-400"></i>` : ''}
-                `;
-               
-                if (!item.disabled) {
-                    div.onclick = () => window.open(item.link, '_blank');
-                }
-                container.appendChild(div);
-            });
-        }
+      <h2 id="submenu-title" class="text-2xl md:text-4xl font-bold mb-8 text-cyan-300"></h2>
 
-        function goBack() {
-            document.getElementById('submenu').classList.add('hidden');
-            document.getElementById('main-menu').classList.remove('hidden');
-        }
-    </script>
+      <div id="submenu-items" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
+    </section>
+  </main>
+
+  <footer class="text-center text-xs text-cyan-400/60 py-6 px-4">
+    BY CMC • SISTEMA DE GESTIÓN INTEGRADA
+  </footer>
+
+  <script>
+    const modules = [
+      {
+        id: 1,
+        title: "CONTROL DE CARNET",
+        icon: "fa-id-card",
+        color: "bg-blue-600",
+        titleClass: "",
+        items: [
+          {
+            name: "FORMULARIO CONTROL DE CARNET",
+            link: "https://app.smartsheet.com/b/form/8ef9cf1b2f814ad586f8050d7d440d91",
+            icon: "fa-id-badge"
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: "REPORTES DE INCIDENTES",
+        icon: "fa-exclamation-triangle",
+        color: "bg-red-600",
+        titleClass: "text-red-300",
+        borderClass: "border border-red-500/30",
+        items: [
+          { name: "INCIDENTES HONDURAS", code: "hn", link: "https://app.smartsheet.com/b/form/019cb5514d7275dc801fba7f96ea5f34" },
+          { name: "INCIDENTES NICARAGUA", code: "ni", link: "https://app.smartsheet.com/b/form/41567b8b59e347aabeb0ee8eb515bcb3" },
+          { name: "INCIDENTES REPÚBLICA DOMINICANA", code: "do", link: "https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d" },
+          { name: "INCIDENTES EL SALVADOR", code: "sv", link: "#", disabled: true, note: "SITIO EN CONSTRUCCIÓN" }
+        ]
+      },
+      {
+        id: 3,
+        title: "ENTREGA RECIBO VEHÍCULOS",
+        icon: "fa-car",
+        color: "bg-sky-600",
+        titleClass: "",
+        items: [
+          { name: "ENTREGA VEHÍCULOS HN", code: "hn", link: "https://app.smartsheet.com/b/form/bc142c15f6b24dffa4bb4ac77b804b2b" },
+          { name: "ENTREGA VEHÍCULOS DR", code: "do", link: "https://app.smartsheet.com/b/form/019cb4df578d74ff90d716b110e85e4d" }
+        ]
+      },
+      {
+        id: 4,
+        title: "REVISIÓN CÁMARAS GLOBAL",
+        icon: "fa-video",
+        color: "bg-violet-600",
+        titleClass: "",
+        items: [
+          { name: "CÁMARAS HONDURAS", code: "hn", link: "https://app.smartsheet.com/sheets/M6Pr2fg44xFJcXRC4g2X7WF442V8J3mg5VVjGHF1" },
+          { name: "CÁMARAS NICARAGUA", code: "ni", link: "https://app.smartsheet.com/sheets/CpfP6G4qgjFw26pMh6V28Hj9cXqvp8cP7hMW9m51" },
+          { name: "CÁMARAS EL SALVADOR", code: "sv", link: "#", disabled: true, note: "SITIO EN CONSTRUCCIÓN" },
+          { name: "CÁMARAS REPÚBLICA DOMINICANA", code: "do", link: "https://app.smartsheet.com/sheets/cPQvVFR8X8GMhmXwm52J7gXJ8pvr2Cvm72662fv1" }
+        ]
+      },
+      {
+        id: 5,
+        title: "HISTORIAL VIDEOS",
+        icon: "fa-play-circle",
+        color: "bg-purple-600",
+        titleClass: "",
+        items: [
+          { name: "HISTORIAL HONDURAS", code: "hn", link: "https://app.smartsheet.com/b/form/0f80986e6b5247139b180d0c6a145fbc" },
+          { name: "HISTORIAL NICARAGUA", code: "ni", link: "https://app.smartsheet.com/b/form/840292ee9a804a3a9254ecccec1caa7d" }
+        ]
+      }
+    ];
+
+    const mainMenu = document.getElementById("main-menu");
+    const submenu = document.getElementById("submenu");
+    const submenuTitle = document.getElementById("submenu-title");
+    const submenuItems = document.getElementById("submenu-items");
+    const backButton = document.getElementById("back-button");
+
+    function updateClock() {
+      const now = new Date();
+      document.getElementById("digital-clock").textContent = now.toLocaleTimeString("es-ES", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      });
+    }
+
+    function createMainCard(module) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `
+        glass interactive-card rounded-3xl p-6 text-center
+        ${module.borderClass || ""}
+      `;
+      button.setAttribute("aria-label", module.title);
+
+      button.innerHTML = `
+        <div class="flex justify-center mb-4">
+          <div class="w-20 h-20 ${module.color} rounded-2xl flex items-center justify-center">
+            <i class="fas ${module.icon} text-5xl" aria-hidden="true"></i>
+          </div>
+        </div>
+        <h3 class="font-semibold text-lg ${module.titleClass || ""}">${module.title}</h3>
+      `;
+
+      button.addEventListener("click", () => openModule(module.id));
+      return button;
+    }
+
+    function getVisualForItem(item) {
+      if (item.code) {
+        return `
+          <img
+            src="https://flagcdn.com/w320/${item.code}.png"
+            alt="Bandera asociada a ${item.name}"
+            class="flag-img"
+            loading="lazy"
+          />
+        `;
+      }
+
+      return `
+        <div class="w-[84px] h-[56px] rounded-xl bg-cyan-600/20 border border-cyan-400/30 flex items-center justify-center text-cyan-300">
+          <i class="fas ${item.icon || "fa-link"} text-2xl" aria-hidden="true"></i>
+        </div>
+      `;
+    }
+
+    function createSubmenuCard(item) {
+      const baseClasses = `
+        glass submenu-card rounded-3xl p-6 flex items-center gap-5 md:gap-8
+        border border-transparent transition-all
+      `;
+
+      if (item.disabled) {
+        const div = document.createElement("div");
+        div.className = `${baseClasses} disabled-card`;
+        div.setAttribute("aria-disabled", "true");
+
+        div.innerHTML = `
+          ${getVisualForItem(item)}
+          <div class="flex-1 min-w-0">
+            <p class="text-lg md:text-xl font-medium">${item.name}</p>
+            ${item.note ? `<p class="text-amber-400 text-sm mt-1">${item.note}</p>` : ""}
+          </div>
+        `;
+
+        return div;
+      }
+
+      const link = document.createElement("a");
+      link.href = item.link;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.className = `${baseClasses} interactive-card focus-ring`;
+      link.setAttribute("aria-label", `Abrir ${item.name}`);
+
+      link.innerHTML = `
+        ${getVisualForItem(item)}
+        <div class="flex-1 min-w-0">
+          <p class="text-lg md:text-xl font-medium">${item.name}</p>
+          ${item.note ? `<p class="text-amber-400 text-sm mt-1">${item.note}</p>` : ""}
+        </div>
+        <i class="fas fa-arrow-right text-3xl md:text-4xl text-cyan-400" aria-hidden="true"></i>
+      `;
+
+      return link;
+    }
+
+    function renderMainMenu() {
+      mainMenu.innerHTML = "";
+      modules.forEach(module => {
+        mainMenu.appendChild(createMainCard(module));
+      });
+    }
+
+    function openModule(id) {
+      const module = modules.find(m => m.id === id);
+      if (!module) return;
+
+      document.getElementById("main-menu-section").classList.add("hidden");
+      submenu.classList.remove("hidden");
+      submenuTitle.textContent = module.title;
+      submenuItems.innerHTML = "";
+
+      module.items.forEach(item => {
+        submenuItems.appendChild(createSubmenuCard(item));
+      });
+
+      submenu.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function goBack() {
+      submenu.classList.add("hidden");
+      document.getElementById("main-menu-section").classList.remove("hidden");
+      submenuItems.innerHTML = "";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    backButton.addEventListener("click", goBack);
+
+    updateClock();
+    setInterval(updateClock, 1000);
+    renderMainMenu();
+  </script>
 </body>
 </html>
